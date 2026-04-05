@@ -24,7 +24,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse ($platform->variables as $var)
+                        @foreach ($platform->variables as $var)
                             <tr>
                                 <td class="fw-semibold">{{ $var->variable }}</td>
                                 <td>
@@ -42,11 +42,7 @@
                                     @endif
                                 </td>
                             </tr>
-                        @empty
-                            <tr>
-                                <td colspan="3" class="text-center text-secondary py-5">Belum ada variable.</td>
-                            </tr>
-                        @endforelse
+                        @endforeach
                     </tbody>
                 </table>
             </div>

@@ -26,7 +26,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($products as $product)
+                    @foreach ($products as $product)
                         <tr>
                             <td class="fw-semibold">{{ $product->name }}</td>
                             <td>Rp {{ number_format($product->buy_price, 2, ',', '.') }}</td>
@@ -53,11 +53,7 @@
                                 </div>
                             </td>
                         </tr>
-                    @empty
-                        <tr>
-                            <td colspan="6" class="text-center text-secondary py-5">Belum ada master produk.</td>
-                        </tr>
-                    @endforelse
+                    @endforeach
                 </tbody>
             </table>
         </div>
