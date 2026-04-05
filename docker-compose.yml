@@ -1,0 +1,34 @@
+services:
+  hpp-app:
+    build:
+      args:
+        user: hpp
+        uid: 1000
+      context: ./
+      dockerfile: Dockerfile
+    image: hpp
+    container_name: hpp-app
+    restart: unless-stopped
+    working_dir: /var/www/
+    volumes:
+      - ./:/var/www
+    networks:
+      - msa-networks
+
+  hpp-nginx:
+    image: nginx:alpine
+    container_name: hpp-nginx
+    restart: unless-stopped
+    ports:
+      - 8098:80
+    volumes:
+      - ./:/var/www
+      - ./docker/nginx:/etc/nginx/conf.d/
+    networks:
+      - msa-networks
+
+networks:
+  msa-networks:
+    driver: bridge
+    name: msa-networks
+    external: true
